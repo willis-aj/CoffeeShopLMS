@@ -1,44 +1,103 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="zxx">
 <head>
-    <meta charset="utf-8" />
+    <title>Mondy | Real Estate HTML Template</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Real estate HTML Template">
+    <meta name="keywords" content="real estate, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+    <!-- Favicon -->
+    <link href="~/Content/img/favicon.ico" rel="shortcut icon" />
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900%7cRoboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/css/slicknav.min.css" />
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    @RenderSection("head", false)
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <!-- Header Section -->
+    <header class="header-section">
+        @*TODO: get logo put here
+                <a href="index.html" class="site-logo">
+                <img src="~/Content/img/logo.png" alt="">
+            </a>*@
+        <nav class="header-nav">
+            <ul class="main-menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                @*Good ex of drop down in nav bar but not needed for anon
+                        <li>
+                        <a href="#">Pages</a>
+                        <ul class="sub-menu">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="search-result.html">Search Result</a></li>
+                            <li><a href="single-property.html">Property</a></li>
+                        </ul>
+                    </li>*@
                 @Html.Partial("_LoginPartial")
+            </ul>
+        </nav>
+    </header>
+    <!-- Header Section end -->
+    <!-- Intro Section end -->
+    <section class="intro-section spad">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
+    <!-- Intro Section end -->
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row text-white">
+                <div class="col-lg-4">
+                    <div class="footer-widger">
+                        <div class="about-widget">
+                            <div class="aw-text">
+                                <h1>The Coffee Shop</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-widger">
+                        <p>When everyone says lets meet down at the coffee shop, we are The Coffee Shop. Happy to offer a variety of drinks as well as yummy eats. Stop by and check us out.</p>
+                        <a href="@Url.Action("Contact", "Home")" class="site-btn">we are hiring</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | <br/>Base Design <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    </footer>
+    <!-- Footer Section end -->
+    <!--====== Javascripts & Jquery ======-->
+    <script src="~/Content/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.slicknav.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>
