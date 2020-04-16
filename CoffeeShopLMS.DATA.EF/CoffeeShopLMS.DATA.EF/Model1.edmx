@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CoffeeShopLMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CourseCompletions">
+          <Key>
+            <PropertyRef Name="CourseCompletionID" />
+          </Key>
+          <Property Name="CourseCompletionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="DateCompleted" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CourseDescription" Type="varchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lessons">
+          <Key>
+            <PropertyRef Name="LessonID" />
+          </Key>
+          <Property Name="LessonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LessonTitle" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="Introduction" Type="varchar" MaxLength="300" />
+          <Property Name="VideoURL" Type="varchar" MaxLength="250" />
+          <Property Name="PdfFileName" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="QuizRequired" Type="bit" Nullable="false" />
+          <Property Name="VideoRequired" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LessonViews">
+          <Key>
+            <PropertyRef Name="LessonViewID" />
+          </Key>
+          <Property Name="LessonViewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LessonID" Type="int" Nullable="false" />
+          <Property Name="DateViewed" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuizQuestions">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LessonID" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="RightAnswer" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="WrongAnswer1" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="WrongAnswer2" Type="nvarchar" MaxLength="300" />
+          <Property Name="WrongAnswer3" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="UserDets">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateStarted" Type="date" />
+          <Property Name="IsEmployedCurrently" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CourseCompletions_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="CourseCompletions" Type="Self.CourseCompletions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseCompletions">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseCompletions_UserDets">
+          <End Role="UserDets" Type="Self.UserDets" Multiplicity="1" />
+          <End Role="CourseCompletions" Type="Self.CourseCompletions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDets">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="CourseCompletions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LessonViews_Lessons">
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="1" />
+          <End Role="LessonViews" Type="Self.LessonViews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lessons">
+              <PropertyRef Name="LessonID" />
+            </Principal>
+            <Dependent Role="LessonViews">
+              <PropertyRef Name="LessonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LessonViews_UserDets">
+          <End Role="UserDets" Type="Self.UserDets" Multiplicity="1" />
+          <End Role="LessonViews" Type="Self.LessonViews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDets">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="LessonViews">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestions_Lessons">
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="1" />
+          <End Role="QuizQuestions" Type="Self.QuizQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lessons">
+              <PropertyRef Name="LessonID" />
+            </Principal>
+            <Dependent Role="QuizQuestions">
+              <PropertyRef Name="LessonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoffeeShopLMSModelStoreContainer">
+          <EntitySet Name="CourseCompletions" EntityType="Self.CourseCompletions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lessons" EntityType="Self.Lessons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LessonViews" EntityType="Self.LessonViews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDets" EntityType="Self.UserDets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CourseCompletions_Courses" Association="Self.FK_CourseCompletions_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseCompletions" EntitySet="CourseCompletions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseCompletions_UserDets" Association="Self.FK_CourseCompletions_UserDets">
+            <End Role="UserDets" EntitySet="UserDets" />
+            <End Role="CourseCompletions" EntitySet="CourseCompletions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_Courses" Association="Self.FK_Lessons_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LessonViews_Lessons" Association="Self.FK_LessonViews_Lessons">
+            <End Role="Lessons" EntitySet="Lessons" />
+            <End Role="LessonViews" EntitySet="LessonViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LessonViews_UserDets" Association="Self.FK_LessonViews_UserDets">
+            <End Role="UserDets" EntitySet="UserDets" />
+            <End Role="LessonViews" EntitySet="LessonViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestions_Lessons" Association="Self.FK_QuizQuestions_Lessons">
+            <End Role="Lessons" EntitySet="Lessons" />
+            <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoffeeShopLMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CourseCompletion">
+          <Key>
+            <PropertyRef Name="CourseCompletionID" />
+          </Key>
+          <Property Name="CourseCompletionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="DateCompleted" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_CourseCompletions_Courses" FromRole="CourseCompletions" ToRole="Courses" />
+          <NavigationProperty Name="UserDet" Relationship="Self.FK_CourseCompletions_UserDets" FromRole="CourseCompletions" ToRole="UserDets" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourseDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CourseCompletions" Relationship="Self.FK_CourseCompletions_Courses" FromRole="Courses" ToRole="CourseCompletions" />
+          <NavigationProperty Name="Lessons" Relationship="Self.FK_Lessons_Courses" FromRole="Courses" ToRole="Lessons" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="LessonID" />
+          </Key>
+          <Property Name="LessonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LessonTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="Introduction" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="VideoURL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PdfFileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="QuizRequired" Type="Boolean" Nullable="false" />
+          <Property Name="VideoRequired" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_Lessons_Courses" FromRole="Lessons" ToRole="Courses" />
+          <NavigationProperty Name="LessonViews" Relationship="Self.FK_LessonViews_Lessons" FromRole="Lessons" ToRole="LessonViews" />
+          <NavigationProperty Name="QuizQuestions" Relationship="Self.FK_QuizQuestions_Lessons" FromRole="Lessons" ToRole="QuizQuestions" />
+        </EntityType>
+        <EntityType Name="LessonView">
+          <Key>
+            <PropertyRef Name="LessonViewID" />
+          </Key>
+          <Property Name="LessonViewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LessonID" Type="Int32" Nullable="false" />
+          <Property Name="DateViewed" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_LessonViews_Lessons" FromRole="LessonViews" ToRole="Lessons" />
+          <NavigationProperty Name="UserDet" Relationship="Self.FK_LessonViews_UserDets" FromRole="LessonViews" ToRole="UserDets" />
+        </EntityType>
+        <EntityType Name="QuizQuestion">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LessonID" Type="Int32" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RightAnswer" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WrongAnswer1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WrongAnswer2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="WrongAnswer3" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_QuizQuestions_Lessons" FromRole="QuizQuestions" ToRole="Lessons" />
+        </EntityType>
+        <EntityType Name="UserDet">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateStarted" Type="DateTime" Precision="0" />
+          <Property Name="IsEmployedCurrently" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CourseCompletions" Relationship="Self.FK_CourseCompletions_UserDets" FromRole="UserDets" ToRole="CourseCompletions" />
+          <NavigationProperty Name="LessonViews" Relationship="Self.FK_LessonViews_UserDets" FromRole="UserDets" ToRole="LessonViews" />
+        </EntityType>
+        <Association Name="FK_CourseCompletions_Courses">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+          <End Role="CourseCompletions" Type="Self.CourseCompletion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseCompletions">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseCompletions_UserDets">
+          <End Role="UserDets" Type="Self.UserDet" Multiplicity="1" />
+          <End Role="CourseCompletions" Type="Self.CourseCompletion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDets">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="CourseCompletions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lessons_Courses">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Lessons" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Lessons">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LessonViews_Lessons">
+          <End Role="Lessons" Type="Self.Lesson" Multiplicity="1" />
+          <End Role="LessonViews" Type="Self.LessonView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lessons">
+              <PropertyRef Name="LessonID" />
+            </Principal>
+            <Dependent Role="LessonViews">
+              <PropertyRef Name="LessonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestions_Lessons">
+          <End Role="Lessons" Type="Self.Lesson" Multiplicity="1" />
+          <End Role="QuizQuestions" Type="Self.QuizQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lessons">
+              <PropertyRef Name="LessonID" />
+            </Principal>
+            <Dependent Role="QuizQuestions">
+              <PropertyRef Name="LessonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LessonViews_UserDets">
+          <End Role="UserDets" Type="Self.UserDet" Multiplicity="1" />
+          <End Role="LessonViews" Type="Self.LessonView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDets">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="LessonViews">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoffeeShopLMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CourseCompletions" EntityType="Self.CourseCompletion" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Lessons" EntityType="Self.Lesson" />
+          <EntitySet Name="LessonViews" EntityType="Self.LessonView" />
+          <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestion" />
+          <EntitySet Name="UserDets" EntityType="Self.UserDet" />
+          <AssociationSet Name="FK_CourseCompletions_Courses" Association="Self.FK_CourseCompletions_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseCompletions" EntitySet="CourseCompletions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseCompletions_UserDets" Association="Self.FK_CourseCompletions_UserDets">
+            <End Role="UserDets" EntitySet="UserDets" />
+            <End Role="CourseCompletions" EntitySet="CourseCompletions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lessons_Courses" Association="Self.FK_Lessons_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Lessons" EntitySet="Lessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LessonViews_Lessons" Association="Self.FK_LessonViews_Lessons">
+            <End Role="Lessons" EntitySet="Lessons" />
+            <End Role="LessonViews" EntitySet="LessonViews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestions_Lessons" Association="Self.FK_QuizQuestions_Lessons">
+            <End Role="Lessons" EntitySet="Lessons" />
+            <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LessonViews_UserDets" Association="Self.FK_LessonViews_UserDets">
+            <End Role="UserDets" EntitySet="UserDets" />
+            <End Role="LessonViews" EntitySet="LessonViews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoffeeShopLMSModelStoreContainer" CdmEntityContainer="CoffeeShopLMSEntities">
+          <EntitySetMapping Name="CourseCompletions">
+            <EntityTypeMapping TypeName="CoffeeShopLMSModel.CourseCompletion">
+              <MappingFragment StoreEntitySet="CourseCompletions">
+                <ScalarProperty Name="CourseCompletionID" ColumnName="CourseCompletionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="CoffeeShopLMSModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lessons">
+            <EntityTypeMapping TypeName="CoffeeShopLMSModel.Lesson">
+              <MappingFragment StoreEntitySet="Lessons">
+                <ScalarProperty Name="LessonID" ColumnName="LessonID" />
+                <ScalarProperty Name="LessonTitle" ColumnName="LessonTitle" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="VideoURL" ColumnName="VideoURL" />
+                <ScalarProperty Name="PdfFileName" ColumnName="PdfFileName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="QuizRequired" ColumnName="QuizRequired" />
+                <ScalarProperty Name="VideoRequired" ColumnName="VideoRequired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LessonViews">
+            <EntityTypeMapping TypeName="CoffeeShopLMSModel.LessonView">
+              <MappingFragment StoreEntitySet="LessonViews">
+                <ScalarProperty Name="LessonViewID" ColumnName="LessonViewID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LessonID" ColumnName="LessonID" />
+                <ScalarProperty Name="DateViewed" ColumnName="DateViewed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizQuestions">
+            <EntityTypeMapping TypeName="CoffeeShopLMSModel.QuizQuestion">
+              <MappingFragment StoreEntitySet="QuizQuestions">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="LessonID" ColumnName="LessonID" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="RightAnswer" ColumnName="RightAnswer" />
+                <ScalarProperty Name="WrongAnswer1" ColumnName="WrongAnswer1" />
+                <ScalarProperty Name="WrongAnswer2" ColumnName="WrongAnswer2" />
+                <ScalarProperty Name="WrongAnswer3" ColumnName="WrongAnswer3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDets">
+            <EntityTypeMapping TypeName="CoffeeShopLMSModel.UserDet">
+              <MappingFragment StoreEntitySet="UserDets">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateStarted" ColumnName="DateStarted" />
+                <ScalarProperty Name="IsEmployedCurrently" ColumnName="IsEmployedCurrently" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

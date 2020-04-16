@@ -1,0 +1,12 @@
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\bin\Debug\CoffeeShopLMS.DATA.EF.dll.config
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\bin\Debug\CoffeeShopLMS.DATA.EF.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\bin\Debug\CoffeeShopLMS.DATA.EF.pdb
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\bin\Debug\EntityFramework.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\bin\Debug\EntityFramework.xml
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\obj\Debug\CoffeeShopLMS.DATA.EF.csprojAssemblyReference.cache
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\obj\Debug\CoffeeShopLMS.DATA.EF.csproj.CoreCompileInputs.cache
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\obj\Debug\CoffeeShopLMS.DATA.EF.csproj.CopyComplete
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\obj\Debug\CoffeeShopLMS.DATA.EF.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF\obj\Debug\CoffeeShopLMS.DATA.EF.pdb
