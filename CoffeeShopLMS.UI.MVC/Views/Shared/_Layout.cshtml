@@ -41,16 +41,37 @@
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("About Us", "About", "Home")</li>
                 <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
-                @*Good ex of drop down in nav bar but not needed for anon
-                        <li>
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="search-result.html">Search Result</a></li>
-                            <li><a href="single-property.html">Property</a></li>
-                        </ul>
-                    </li>*@
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                    <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                    <li>@Html.ActionLink("Lessons", "Index", "Lessons")</li>
+                    <li>@Html.ActionLink("Lesson Views", "Index", "LessonViews")</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                    <li>@Html.ActionLink("Course Completions", "Index", "CourseCompletions")</li>
+                }
+                @if (User.IsInRole("Manager"))
+                {
+                    <li>@Html.ActionLink("Lessons", "Index", "Lessons")</li>
+                    <li>@Html.ActionLink("Lesson Views", "Index", "LessonViews")</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                    <li>@Html.ActionLink("Course Completions", "Index", "CourseCompletions")</li>
+                }
+                @if (User.IsInRole("Employee"))
+                {
+                    <li>@Html.ActionLink("Lessons", "Index", "Lessons")</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                }
                 @Html.Partial("_LoginPartial")
+                @*Good ex of drop down in nav bar but not needed for anon
+            <li>
+            <a href="#">Pages</a>
+            <ul class="sub-menu">
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="search-result.html">Search Result</a></li>
+                <li><a href="single-property.html">Property</a></li>
+            </ul>
+        </li>*@
             </ul>
         </nav>
     </header>
@@ -86,7 +107,7 @@
             <div class="copyright">
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 Copyright &copy;
-                <script>document.write(new Date().getFullYear());</script> All rights reserved | <br/>Base Design <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | <br />Base Design <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </div>
         </div>

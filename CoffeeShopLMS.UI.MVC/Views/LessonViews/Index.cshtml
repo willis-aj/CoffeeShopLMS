@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.LessonView>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateViewed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDet.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateViewed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDet.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.LessonViewID })
+
+            @if (User.IsInRole("Admin"))
+            {
+            <span>
+                |
+                @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewID })
+            </span>       
+            }
+        </td>
+    </tr>
+}
+
+</table>

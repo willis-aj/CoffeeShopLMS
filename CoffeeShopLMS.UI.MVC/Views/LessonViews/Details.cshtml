@@ -1,0 +1,47 @@
+﻿@model CoffeeShopLMS.DATA.EF.LessonView
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LessonView</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateViewed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateViewed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesson.LessonTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDet.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDet.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        <span>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.LessonViewID }) |
+        </span>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

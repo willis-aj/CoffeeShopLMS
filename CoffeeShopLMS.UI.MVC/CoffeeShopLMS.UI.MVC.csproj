@@ -168,7 +168,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseCompletionsController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LessonsController.cs" />
+    <Compile Include="Controllers\LessonViewsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
@@ -329,6 +333,24 @@
     <Content Include="_Archive\OrigTemplate\Source\Magnific-Popup-master.zip" />
     <Content Include="_Archive\OrigTemplate\Source\SlickNav-master.zip" />
     <Content Include="Views\Shared\OrigLayout.cshtml" />
+    <Content Include="Views\LessonViews\Delete.cshtml" />
+    <Content Include="Views\LessonViews\Details.cshtml" />
+    <Content Include="Views\LessonViews\Edit.cshtml" />
+    <Content Include="Views\LessonViews\Index.cshtml" />
+    <Content Include="Views\Lessons\Create.cshtml" />
+    <Content Include="Views\Lessons\Delete.cshtml" />
+    <Content Include="Views\Lessons\Details.cshtml" />
+    <Content Include="Views\Lessons\Edit.cshtml" />
+    <Content Include="Views\Lessons\Index.cshtml" />
+    <Content Include="Views\CourseCompletions\Delete.cshtml" />
+    <Content Include="Views\CourseCompletions\Details.cshtml" />
+    <Content Include="Views\CourseCompletions\Edit.cshtml" />
+    <Content Include="Views\CourseCompletions\Index.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +368,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CoffeeShopLMS.DATA.EF\CoffeeShopLMS.DATA.EF.csproj">
+      <Project>{7d197764-0b1f-417c-b3fe-55502f68fdda}</Project>
+      <Name>CoffeeShopLMS.DATA.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

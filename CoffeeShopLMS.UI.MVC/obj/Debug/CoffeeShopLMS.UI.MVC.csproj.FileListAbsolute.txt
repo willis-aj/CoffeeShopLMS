@@ -103,3 +103,6 @@ C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\obj\Debug\CoffeeShopLMS.UI.MVC.csproj.CopyComplete
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\obj\Debug\CoffeeShopLMS.UI.MVC.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\obj\Debug\CoffeeShopLMS.UI.MVC.pdb
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.pdb
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.dll.config
