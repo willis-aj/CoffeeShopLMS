@@ -7,44 +7,67 @@
 <h2>Index</h2>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DateViewed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDet.FirstName)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="lessonViewTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateViewed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson.LessonTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDet.FirstName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateViewed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDet.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.LessonViewID })
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateViewed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lesson.LessonTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserDet.FirstName)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.LessonViewID })
 
-            @if (User.IsInRole("Admin"))
-            {
-            <span>
-                |
-                @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewID })
-            </span>       
-            }
-        </td>
-    </tr>
-}
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <span>
+                            |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewID })
+                        </span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+
+@section scripts{
+
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#lessonViewTable').DataTable();
+        });
+    </script>
+}
+
+@section head{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+}

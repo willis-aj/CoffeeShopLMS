@@ -1,0 +1,48 @@
+﻿@model CoffeeShopLMS.UI.MVC.Models.ContactViewModel
+
+@{
+    ViewBag.Title = "Thanks! :D";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+<h3>We will get back to you asap!</h3>
+<div>
+    <br />
+    <h4>Here is what we got as your info. If something is wrong please feel free to send us another message with the correct info.</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+    </dl>
+</div>

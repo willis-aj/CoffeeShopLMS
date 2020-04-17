@@ -48,6 +48,7 @@ C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\roslyn\VBCSCompiler.exe
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\Antlr3.Runtime.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\EntityFramework.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\EntityFramework.SqlServer.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\Microsoft.AspNet.Identity.Core.dll
@@ -74,6 +75,8 @@ C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\System.Web.WebPages.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\System.Web.WebPages.Razor.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\WebGrease.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.pdb
+C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.dll.config
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\System.Web.Helpers.xml
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\System.Web.Mvc.xml
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\System.Web.Optimization.xml
@@ -103,6 +106,3 @@ C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\obj\Debug\CoffeeShopLMS.UI.MVC.csproj.CopyComplete
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\obj\Debug\CoffeeShopLMS.UI.MVC.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\obj\Debug\CoffeeShopLMS.UI.MVC.pdb
-C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.dll
-C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.pdb
-C:\Users\student\Documents\Visual Studio 2017\Projects\12_PROJECT\CoffeeShopLMS\src\CoffeeShopLMS.UI.MVC\bin\CoffeeShopLMS.DATA.EF.dll.config
