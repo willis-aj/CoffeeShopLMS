@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.LessonView>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Personal Progress";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<a class="btn btn-primary" href=@Url.Action("PersonalProgress", "LessonViews")>View Personal Lesson Views</a>
-<hr />
 <table class="table" id="lessonViewTable">
     <thead>
         <tr>
@@ -20,7 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.UserDet.FirstName)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -36,18 +33,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UserDet.FirstName)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.LessonViewID })
-
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <span>
-                            |
-                            @Html.ActionLink("Edit", "Edit", new { id = item.LessonViewID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.LessonViewID })
-                        </span>
-                    }
                 </td>
             </tr>
         }

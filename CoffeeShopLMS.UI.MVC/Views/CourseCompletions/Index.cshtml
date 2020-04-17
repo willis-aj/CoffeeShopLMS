@@ -6,6 +6,8 @@
 
 <h2>Index</h2>
 
+<a class="btn btn-primary" href=@Url.Action("PersonalProgress", "CourseCompletions")>View Personal Course Completions</a>
+<hr />
 <table class="table">
     <tr>
         <th>
@@ -20,29 +22,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCompleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cours.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDet.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.CourseCompletionID })
-            @if (User.IsInRole("Admin"))
-            {
-                <span>
-                    |
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CourseCompletionID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CourseCompletionID })
-                </span>
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cours.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDet.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.CourseCompletionID })
+                @if (User.IsInRole("Admin"))
+                {
+                    <span>
+                        |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseCompletionID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CourseCompletionID })
+                    </span>
+                }
+            </td>
+        </tr>
+    }
 
 </table>

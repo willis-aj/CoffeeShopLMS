@@ -7,19 +7,32 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CoffeeShopLMS.DATA.EF;
+using Microsoft.AspNet.Identity;
+
 
 namespace CoffeeShopLMS.UI.MVC.Controllers
 {
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize]
     public class CourseCompletionsController : Controller
     {
         private CoffeeShopLMSEntities db = new CoffeeShopLMSEntities();
 
         // GET: CourseCompletions
+
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Index()
         {
             var courseCompletions = db.CourseCompletions.Include(c => c.Cours).Include(c => c.UserDet);
             return View(courseCompletions.ToList());
+        }
+
+        public ActionResult PersonalProgress()
+        {
+            List<CourseCompletion> personalCompletions = new List<CourseCompletion>();
+            string usersid = User.Identity.GetUserId();
+            personalCompletions = db.CourseCompletions.Where(x => x.UserID == usersid).ToList();
+            var courseCompletions = db.CourseCompletions.Include(c => c.Cours).Include(c => c.UserDet);
+            return View(personalCompletions);
         }
 
         // GET: CourseCompletions/Details/5

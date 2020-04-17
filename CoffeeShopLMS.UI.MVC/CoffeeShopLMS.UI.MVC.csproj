@@ -266,6 +266,8 @@
     <Content Include="Content\icon-fonts\fontawesome-webfont.eot" />
     <Content Include="Content\icon-fonts\fontawesome-webfont.woff" />
     <Content Include="Content\icon-fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\pdfs\Coffee.pdf" />
+    <Content Include="Content\pdfs\DefaultPDF.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -353,6 +355,8 @@
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
+    <Content Include="Views\LessonViews\PersonalProgress.cshtml" />
+    <Content Include="Views\CourseCompletions\PersonalProgress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -61,17 +61,19 @@
                 {
                     <li>@Html.ActionLink("Lessons", "Index", "Lessons")</li>
                     <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                    <li>@Html.ActionLink("Lesson Progress", "PersonalProgress", "LessonViews")</li>
+                    <li>@Html.ActionLink("Course Progress", "PersonalProgress", "CourseCompletions")</li>
                 }
                 @Html.Partial("_LoginPartial")
                 @*Good ex of drop down in nav bar but not needed for anon
-                        <li>
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="search-result.html">Search Result</a></li>
-                            <li><a href="single-property.html">Property</a></li>
-                        </ul>
-                    </li>*@
+            <li>
+            <a href="#">Pages</a>
+            <ul class="sub-menu">
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="search-result.html">Search Result</a></li>
+                <li><a href="single-property.html">Property</a></li>
+            </ul>
+        </li>*@
             </ul>
         </nav>
     </header>
@@ -119,6 +121,69 @@
     <script src="~/Content/js/jquery.slicknav.min.js"></script>
     <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
     <script src="~/Content/js/main.js"></script>
+    <script>
+        //Loop thru all of the elements in our navigation and find the anchor tag
+        //that matches the href in navigation. Then add our selected class to that anchor
+        //tag's li element.
+        //$('.mainmenu ul li').each(function () {
+        // if ($(this).find('a').attr('href') == window.location.pathname) {
+        // $(this).addClass('selected');
+        // }
+        //});
+        //With the code above, when you navigate to any sub view (anything OTHER THAN index),
+        //you losethe highlighted navigation.
+        //Desired outcome is for the highlight to remain on the main nav NO MATTER WHICH view is
+        //beingdisplayed in that controller EXCEPT for the HOME controller.
+        //loop through the li elements in the nav
+        $('.header-nav ul li').each(function () {
+            //if you want to match the stylesheet AND it has the assigned class on the anchor
+            //modify code as follows:
+            //$('.mainmenu ul li a').each(function () { //add the anchor to the DOM Selection
+            //var fullAnchor = $(this).attr('href'); //remove the find('a') from the
+            //fullAnchor (we are already there)
+            //everything else stays the same.
+            //get the full anchor tag and print to the console (in the inspector)
+            var fullAnchor = $(this).find('a').attr('href');
+            //console.log(fullAnchor);
+            //split() the values by '/' (give us a collection) – of the controller Name(s)
+            //log in the console
+            var aController = fullAnchor.split('/');
+            console.log('aController[1]: ' + aController[1])
+            //get the full context of the url (including any querystring values)
+            //substring to remove EVERYTHING before the path
+            //(mysite.com/home/index - would return home/index)
+            var fullPath = (window.location.pathname + location.search).substr(1);
+            //break the string by the '/'
+            var pController = fullPath.split('/');
+            //check the values in the console
+            //console.log('pController[0]: ' + pController[0]);
+            //console.log(fullPath);
+            //console.log('------------------');
+            //console.log(window.location.pathname);
+            //console.log(fullAnchor);
+            if (window.location.pathname === fullAnchor || aController[1] === pController[0]) {
+                //apply the selected class to the li where the
+                //a.href.controllerName == p.fullName.controllerName
+                //locate the anchor tag inside the li and compare the href
+                //to the current broswer location - add class if they match
+                $(this).find('a').addClass('active');
+            }
+            //resolve the logic issue. Without this logic all links that have
+            //Home as the controller (except Home/Index) get the class added.
+
+            //make sure that all links show Home as capitalized, this is a case sensitve
+            //comparison (if you use Url.Action() or Html.ActionLink(), you should not have any
+            //issue as those are methods that require case sensitivity calling the action
+            //(method). If you use pathing ~/home/index, those will function in the browser but
+            //will escape this logic).
+            //if the controller is Home, but the path does NOT match the ENTIRE anchor - remove
+            //the class (prevents 2 nav elements from showing selected simultaneously)
+            //if (aController[1] == 'Home' && window.location.pathname != fullAnchor) {
+            //    $(this).removeClass();
+            //}
+        });
+
+    </script><!--highlighted nav script-->
     @RenderSection("scripts", false)
 </body>
 </html>

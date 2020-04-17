@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.CourseCompletion>
+
+@{
+    ViewBag.Title = "PersonalProgress";
+}
+
+<h2>PersonalProgress</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cours.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDet.FirstName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCompleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cours.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDet.FirstName)
+        </td>
+    </tr>
+}
+
+</table>
