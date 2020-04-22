@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using CoffeeShopLMS.DATA.EF;
 
 namespace CoffeeShopLMS.UI.MVC.Controllers
 {
@@ -77,6 +78,7 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
         [HttpGet]
         public async Task<ActionResult> Create()
         {
+
             //Get the list of Roles
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
             return View();
@@ -96,6 +98,20 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
                 //Add User to the selected Roles 
                 if (adminresult.Succeeded)
                 {
+                    #region Dealing with custom user details
+                    UserDet newUserDeets = new UserDet();
+                    newUserDeets.UserID = user.Id;
+                    newUserDeets.FirstName = userViewModel.FirstName;
+                    newUserDeets.LastName = userViewModel.LastName;
+                    newUserDeets.DateStarted = userViewModel.DateStarted;
+                    newUserDeets.IsEmployedCurrently = userViewModel.IsEmployedCurrently;
+
+
+                    CoffeeShopLMSEntities db = new CoffeeShopLMSEntities();
+                    db.UserDets.Add(newUserDeets);
+                    db.SaveChanges();
+                    #endregion
+
                     if (selectedRoles != null)
                     {
                         var result = await UserManager.AddToRolesAsync(user.Id, selectedRoles);

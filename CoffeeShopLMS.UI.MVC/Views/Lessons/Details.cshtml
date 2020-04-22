@@ -1,22 +1,14 @@
 ﻿@model CoffeeShopLMS.DATA.EF.Lesson
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Html.DisplayFor(model => model.LessonTitle);
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LessonTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LessonTitle)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Introduction)
         </dt>
@@ -25,46 +17,31 @@
             @Html.DisplayFor(model => model.Introduction)
         </dd>
 
-        <dt>
-            Video
-        </dt>
+        @if (Model.VideoURL != null)
+        {
+            <dt>
+                Video
+            </dt>
 
-        <dd>
-            <div id="player"></div>
-        </dd>
+            <dd>
+                <div id="player"></div>
+            </dd>
+        }
 
-        <dt>
-            PDF:
-        </dt>
+        @if (Model.PdfFileName != "DefaultPDF.pdf")
+        {
+            <dt>
+                PDF:
+            </dt>
 
-        <dd>
-            @*@Html.DisplayFor(model => model.PdfFileName)*@
-            <embed src="~/Content/pdfs/@Model.PdfFileName" width="800" height="400" />
-        </dd>
+            <dd>
+                @*@Html.DisplayFor(model => model.PdfFileName)*@
+                <embed src="~/Content/pdfs/@Model.PdfFileName" width="800" height="400" />
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuizRequired)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuizRequired)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoRequired)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VideoRequired)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Cours.CourseName)
@@ -92,12 +69,21 @@
     <script>
         // create youtube player
         var player;
-        var h = '400';
-        var w = '800';
+        var h;
+        var w;
+
+        if ($(window).width() > 850) {
+            h = '360';
+            w = '640';
+        }
+        else{
+            h = '168.75';
+            w = '300';
+        }
         function onYouTubePlayerAPIReady() {
         player = new YT.Player('player', {
-        height: 360,
-        width: 640,
+        height: h,
+        width: w,
         modestbranding: 1,
         videoId: '@Model.VideoURL',
         playerVars: {

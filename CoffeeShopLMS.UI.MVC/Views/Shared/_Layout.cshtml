@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="zxx">
 <head>
-    <title>Mondy | Real Estate HTML Template</title>
+    <title>The Coffee Shop | @ViewBag.Title</title>
     <meta charset="UTF-8">
     <meta name="description" content="Real estate HTML Template">
     <meta name="keywords" content="real estate, html">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="~/Content/css/slicknav.min.css" />
     <!-- Main Stylesheets -->
     <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link href="~/Content/css/personalStyle.css" rel="stylesheet" />
     @RenderSection("head", false)
 
     <!--[if lt IE 9]>
@@ -156,17 +157,23 @@
             //break the string by the '/'
             var pController = fullPath.split('/');
             //check the values in the console
-            //console.log('pController[0]: ' + pController[0]);
-            //console.log(fullPath);
-            //console.log('------------------');
-            //console.log(window.location.pathname);
-            //console.log(fullAnchor);
+            console.log('pController[0]: ' + pController[0]);
+            console.log('fullPath: ' + fullPath);
+            console.log('window.location.pathname: ' + window.location.pathname);
+            console.log('fullAnchor: ' + fullAnchor);
+            console.log('------------------');
             if (window.location.pathname === fullAnchor || aController[1] === pController[0]) {
                 //apply the selected class to the li where the
                 //a.href.controllerName == p.fullName.controllerName
                 //locate the anchor tag inside the li and compare the href
                 //to the current broswer location - add class if they match
+                
                 $(this).find('a').addClass('active');
+                
+            if (aController[1] == 'Home' && window.location.pathname != fullAnchor)
+            {
+                $(this).find('a').removeClass('active');
+            }
             }
             //resolve the logic issue. Without this logic all links that have
             //Home as the controller (except Home/Index) get the class added.

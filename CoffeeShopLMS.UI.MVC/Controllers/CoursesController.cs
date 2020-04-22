@@ -18,22 +18,54 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
         // GET: Courses
         public ActionResult Index()
         {
+            var activeCourses = db.Courses.Where(x => x.IsActive).ToList();
+            return View(activeCourses);
+        }
+
+        // GET: Courses
+        [Authorize(Roles = "Admin")]
+        public ActionResult AdminIndex()
+        {
             return View(db.Courses.ToList());
         }
 
+        //// GET: Courses/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    //Cours cours = db.Courses.Find(id);
+
+        //    var lessonsInCourse = db.Courses.Where(x => x.CourseID == id).ToList();
+        //    if (lessonsInCourse == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    //return View(cours);
+        //    return View(lessonsInCourse);
+
+        //}
         // GET: Courses/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult DetailsList(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cours cours = db.Courses.Find(id);
-            if (cours == null)
+            //Cours cours = db.Courses.Find(id);
+
+            var lessonsInCourse = db.Lessons.Where(x => x.CourseID == id).ToList();
+            Cours courseThisIsDetailsFor = db.Courses.Where(x => x.CourseID == id).FirstOrDefault();
+            ViewBag.Title = courseThisIsDetailsFor.CourseName;
+            if (lessonsInCourse == null)
             {
                 return HttpNotFound();
             }
-            return View(cours);
+            //return View(cours);
+            return View(lessonsInCourse);
+
         }
 
         // GET: Courses/Create

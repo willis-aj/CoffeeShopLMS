@@ -132,54 +132,54 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
+        ////
+        //// GET: /Account/Register
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}
 
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    #region Dealing with custom user details
-                    UserDet newUserDeets = new UserDet();
-                    newUserDeets.UserID = user.Id;
-                    newUserDeets.FirstName = model.FirstName;
-                    newUserDeets.LastName = model.LastName;
-                    newUserDeets.DateStarted = model.DateStarted;
-                    newUserDeets.IsEmployedCurrently = model.IsEmployedCurrently;
+        ////
+        //// POST: /Account/Register
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Register(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        //        var result = await UserManager.CreateAsync(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            #region Dealing with custom user details
+        //            UserDet newUserDeets = new UserDet();
+        //            newUserDeets.UserID = user.Id;
+        //            newUserDeets.FirstName = model.FirstName;
+        //            newUserDeets.LastName = model.LastName;
+        //            newUserDeets.DateStarted = model.DateStarted;
+        //            newUserDeets.IsEmployedCurrently = model.IsEmployedCurrently;
 
 
-                    CoffeeShopLMSEntities db = new CoffeeShopLMSEntities();
-                    db.UserDets.Add(newUserDeets);
-                    db.SaveChanges();
-                    #endregion
+        //            CoffeeShopLMSEntities db = new CoffeeShopLMSEntities();
+        //            db.UserDets.Add(newUserDeets);
+        //            db.SaveChanges();
+        //            #endregion
 
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
-                }
-                AddErrors(result);
-            }
+        //            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //            await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+        //            ViewBag.Link = callbackUrl;
+        //            return View("DisplayEmail");
+        //        }
+        //        AddErrors(result);
+        //    }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
 
         //
         // GET: /Account/ConfirmEmail

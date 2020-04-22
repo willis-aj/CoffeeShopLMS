@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.Lesson>
+
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Lessons")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LessonTitle)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.QuizRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VideoRequired)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Cours.CourseName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LessonTitle)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.QuizRequired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoRequired)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Cours.CourseName)
+        </td>
+        <td>
+                @Html.ActionLink("Details", "Details", "Lessons", new { id = item.LessonID }, new { @class = "btn btn-default" })
+        </td>
+        <td>
+    </tr>
+    }
+
+</table>

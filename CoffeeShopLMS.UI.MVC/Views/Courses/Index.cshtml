@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.Cours>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Courses";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 @if (User.IsInRole("Admin"))
 {
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+    <a class="btn btn-default" href=@Url.Action("AdminIndex", "Courses")>View All Courses</a> <br /><br />
 }
 <table class="table">
     <tr>
@@ -19,9 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.CourseDescription)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>*@
         <th></th>
     </tr>
 
@@ -34,18 +35,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CourseDescription)
             </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.CourseID })
+                @if (!User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Details", "DetailsList", new { id = item.CourseID }, new { @class="btn btn-default"})
+                }
                 @if (User.IsInRole("Admin"))
                 {
-                    <span>
-                        |
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
-                    </span>
+                <span>
+                    @Html.ActionLink("Details", "DetailsList", new { id = item.CourseID }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+                </span>
                 }
             </td>
         </tr>

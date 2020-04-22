@@ -21,6 +21,13 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
         // GET: Lessons
         public ActionResult Index()
         {
+            var lessons = db.Lessons.Where(l=>l.IsActive);
+            return View(lessons.ToList());
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult AdminIndex()
+        {
             var lessons = db.Lessons.Include(l => l.Cours);
             return View(lessons.ToList());
         }
@@ -53,7 +60,7 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
             var lessonsInTheCourse = db.Lessons.Where(x => x.CourseID == lessonThatWasViewed.CourseID);
             List<Lesson> lessonsInLessonViews = new List<Lesson>();
 
-            foreach (var l in db.LessonViews)
+            foreach (var l in db.LessonViews.Where(x=>x.UserID == lessonView.UserID))
             {
                 var lessonViewedInThisLessonView = db.Lessons.Where(x => x.LessonID == l.LessonID).FirstOrDefault();
                 if (lessonsInTheCourse.Where(x => x.LessonID == l.LessonID).FirstOrDefault() != null)
@@ -68,29 +75,32 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
             if (numberOfLessonsInTheCourse == lessonsInLessonViews.Count)
             {
                 //string courseFinishMessage = $"Employee {lessonView.UserID} has finished a course.";
-                MailMessage m = new MailMessage(
-                "no-reply@abigaylewillis.com",
-                "willis.aj@outlook.com",
-                "Course Completion",
-                confirmationMessage);
-                m.IsBodyHtml = true;
-                SmtpClient client = new SmtpClient("mail.abigaylewillis.com");
-                client.Credentials = new NetworkCredential("no-reply@abigaylewillis.com", "@1001w");
-                client.Port = 8889;
-                client.Send(m);
-
-
+                
                 CourseCompletion courseCompletion = new CourseCompletion();
                 courseCompletion.CourseID = courseViewed.CourseID;
                 courseCompletion.UserID = User.Identity.GetUserId();
                 courseCompletion.DateCompleted = today;
+
+
 
                 CourseCompletion courseHasBeenCompletedBefore = db.CourseCompletions.Where(x => x.CourseID == courseCompletion.CourseID).Where(x => x.UserID == courseCompletion.UserID).FirstOrDefault();
                 if (courseHasBeenCompletedBefore == null)
                 {
                     db.CourseCompletions.Add(courseCompletion);
                     db.SaveChanges();
+
+                    MailMessage m = new MailMessage(
+                    "no-reply@abigaylewillis.com",
+                    "willis.aj@outlook.com",
+                    "Course Completion",
+                    confirmationMessage);
+                    m.IsBodyHtml = true;
+                    SmtpClient client = new SmtpClient("mail.abigaylewillis.com");
+                    client.Credentials = new NetworkCredential("no-reply@abigaylewillis.com", "@1001w");
+                    client.Port = 8889;
+                    client.Send(m);
                 }
+
 
             }
 
@@ -100,6 +110,7 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
             }
             return View(lesson);
         }
+
 
 
         // GET: Lessons/Create
@@ -138,21 +149,28 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
                 }//end if this ran if they tried to upload a pdf
 
                 lesson.PdfFileName = pdfName;
-
-                var v = lesson.VideoURL.IndexOf("v=");
-                var amp = lesson.VideoURL.IndexOf("&", v);
-                string vid;
-                // if the video id is the last value in the url
-                if (amp == -1)
+                if (lesson.VideoURL != null && lesson.VideoURL != "" )
                 {
-                    vid = lesson.VideoURL.Substring(v + 2);
-                    // if there are other parameters after the video id in the url
+
+                    var v = lesson.VideoURL.IndexOf("v=");
+                    var amp = lesson.VideoURL.IndexOf("&", v);
+                    string vid;
+                    // if the video id is the last value in the url
+                    if (amp == -1)
+                    {
+                        vid = lesson.VideoURL.Substring(v + 2);
+                        // if there are other parameters after the video id in the url
+                    }
+                    else
+                    {
+                        vid = lesson.VideoURL.Substring(v + 2, amp - (v + 2));
+                    }
+                    lesson.VideoURL = vid; 
                 }
                 else
                 {
-                    vid = lesson.VideoURL.Substring(v + 2, amp - (v + 2));
+                    lesson.VideoURL = null;
                 }
-                lesson.VideoURL = vid;
 
                 db.Lessons.Add(lesson);
                 db.SaveChanges();
@@ -207,21 +225,28 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
                     }//end if assigned new name in here so that it only happens if the thing they uploaded was a pdf
                 }//end if
 
-
-                var v = lesson.VideoURL.IndexOf("v=");
-                var amp = lesson.VideoURL.IndexOf("&", v);
-                string vid;
-                // if the video id is the last value in the url
-                if (amp == -1)
+                if (lesson.VideoURL != null && lesson.VideoURL != "")
                 {
-                    vid = lesson.VideoURL.Substring(v + 2);
-                    // if there are other parameters after the video id in the url
+
+                    var v = lesson.VideoURL.IndexOf("v=");
+                    var amp = lesson.VideoURL.IndexOf("&", v);
+                    string vid;
+                    // if the video id is the last value in the url
+                    if (amp == -1)
+                    {
+                        vid = lesson.VideoURL.Substring(v + 2);
+                        // if there are other parameters after the video id in the url
+                    }
+                    else
+                    {
+                        vid = lesson.VideoURL.Substring(v + 2, amp - (v + 2));
+                    }
+                    lesson.VideoURL = vid;
                 }
                 else
                 {
-                    vid = lesson.VideoURL.Substring(v + 2, amp - (v + 2));
+                    lesson.VideoURL = null;
                 }
-                lesson.VideoURL = vid;
 
 
                 db.Entry(lesson).State = EntityState.Modified;

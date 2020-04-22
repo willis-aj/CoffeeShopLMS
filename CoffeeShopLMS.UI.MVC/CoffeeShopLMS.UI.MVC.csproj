@@ -193,6 +193,7 @@
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\slicknav.min.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\personalStyle.css" />
     <Content Include="Content\icon-fonts\fontawesome-webfont.svg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-3.2.1.min.js" />
@@ -301,7 +302,7 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="_Archive\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -350,13 +351,16 @@
     <Content Include="Views\CourseCompletions\Index.cshtml" />
     <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Courses\Delete.cshtml" />
-    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="_Archive\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
     <Content Include="Views\LessonViews\PersonalProgress.cshtml" />
     <Content Include="Views\CourseCompletions\PersonalProgress.cshtml" />
+    <Content Include="Views\Lessons\AdminIndex.cshtml" />
+    <Content Include="Views\Courses\AdminIndex.cshtml" />
+    <Content Include="Views\Courses\DetailsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
