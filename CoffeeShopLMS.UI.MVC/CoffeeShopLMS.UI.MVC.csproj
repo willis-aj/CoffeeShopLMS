@@ -269,6 +269,7 @@
     <Content Include="Content\icon-fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\pdfs\Coffee.pdf" />
     <Content Include="Content\pdfs\DefaultPDF.pdf" />
+    <Content Include="Content\pdfs\AbigayleWillisDocumentation2.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -46,7 +46,9 @@ namespace CoffeeShopLMS.UI.MVC.Controllers
             DateTime today = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
             lessonView.DateViewed = today;
 
-            LessonView entryHasBeenEnteredBefore = db.LessonViews.Where(x => x.LessonID == lessonView.LessonID).Where(x => x.UserID == lessonView.UserID).FirstOrDefault();
+            LessonView entryHasBeenEnteredBefore = db.LessonViews
+                .Where(x => x.LessonID == lessonView.LessonID && x.UserID == lessonView.UserID)
+                .FirstOrDefault();
             if (entryHasBeenEnteredBefore == null)
             {
                 db.LessonViews.Add(lessonView);
