@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.LessonView>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lesson Views";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <a class="btn btn-primary" href=@Url.Action("PersonalProgress", "LessonViews")>View Personal Lesson Views</a>
 <hr />

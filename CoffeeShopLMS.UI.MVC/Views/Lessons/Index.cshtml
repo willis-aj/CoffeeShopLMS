@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.Lesson>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lessons";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 @if (User.IsInRole("Admin"))
 {

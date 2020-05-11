@@ -27,3 +27,7 @@ a {
         background-color: #4C4C4C;
         border-color: #4C4C4C;
     }
+
+ul li {
+    list-style:none;
+}

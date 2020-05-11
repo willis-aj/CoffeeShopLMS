@@ -1,11 +1,49 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Menu";
 }
 <hgroup>
-    <h2>@ViewBag.Title.</h2>
+    <h2 id="menu">@ViewBag.Title</h2>
 </hgroup>
-<div class="row-fluid">
-    <div class="span12">
-        <p>This is The Coffee Shop.</p>
+<hr />
+<div class="row">
+    <div class="col-md-2">
+        <h3>Coffee</h3>
+        <ul>
+            <li>Espresso</li>
+            <li>Con Panna</li>
+            <li>Americano</li>
+            <li>Latte</li>
+            <li>Cappuccino</li>
+            <li>Macchiato</li>
+            <li>Drip</li>
+            <li>French Press</li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <h3>Tea</h3>
+        <ul>
+            <li>Pineapple Konapop</li>
+            <li>Jade Citrus Mint</li>
+            <li>Jasmine Dragon Pearls</li>
+            <li>Organic Nepal Black</li>
+            <li>Honey Black</li>
+            <li>Sip of Sage</li>
+            <li>Lavender Swirl</li>
+            <li>Matcha</li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <h3>Pastries</h3>
+        <ul>
+            <li>Cherry Danish</li>
+            <li>Cheese Danish</li>
+            <li>Chocolate Croissant</li>
+            <li>Blue Berry Muffin</li>
+            <li>Cinnamon Roll</li>
+            <li>Rasberry Tart</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <img src="~/Content/img/latte.jpg" alt="a latte in a mug" />
     </div>
 </div>

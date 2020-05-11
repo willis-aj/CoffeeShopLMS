@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CoffeeShopLMS.DATA.EF.CourseCompletion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Course Completions";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <a class="btn btn-primary" href=@Url.Action("PersonalProgress", "CourseCompletions")>View Personal Course Completions</a>
 <hr />

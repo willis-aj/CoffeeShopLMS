@@ -19,6 +19,8 @@
     <!-- Main Stylesheets -->
     <link rel="stylesheet" href="~/Content/css/style.css" />
     <link href="~/Content/css/personalStyle.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/img/faviconCoffeeCup.ico" type="image/x-icon">
+    <link rel="icon" href="~/Content/img/faviconCoffeeCup.ico" type="image/x-icon">
     @RenderSection("head", false)
 
     <!--[if lt IE 9]>
@@ -40,7 +42,7 @@
         <nav class="header-nav">
             <ul class="main-menu">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                <li>@Html.ActionLink("Menu", "About", "Home")</li>
                 <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
                 @if (User.IsInRole("Admin"))
                 {
